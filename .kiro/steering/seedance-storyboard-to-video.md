@@ -2,24 +2,42 @@
 inclusion: always
 ---
 
-# Kiro adaptation notes
+# INVOCATION (Kiro)
 
-This file is a Skill written in Anthropic's skill format. When the user triggers it
-(see the `description` field below), follow the workflow as guidance, not as a
-rigid script. Notes for running it inside Kiro Web:
+**Command to activate this skill:** `/storyboard-video`
+
+**Strict activation rule:**
+- Activate the workflow below ONLY when the user types one of these exact commands
+  at the start of a message:
+  - `/storyboard-video`
+  - `/storyboard-video quick`  (skip-the-setup mode — see "Quick Start" section)
+- Do NOT auto-activate on loose phrases like "make a video" or "storyboard" alone.
+  The user wants explicit, predictable control. Other skills in the family will use
+  their own slash commands (e.g., `/sb-character`, `/sb-shot`, `/sb-object`,
+  `/sb-pose`, `/sb-creature`) and must not collide with this one.
+- If the user types `/storyboard-video` with no other context, start at STEP 1
+  (ask for the reference image).
+- If the user is already mid-conversation about something else and types the
+  command, treat it as a hard reset into this workflow.
+
+# KIRO ADAPTATION NOTES
+
+This file is a Skill written in Anthropic's skill format. When activated by the
+command above, follow the workflow as **guidance, not as a rigid script**. Notes
+for running it inside Kiro Web:
 
 - Wherever the skill says "use `AskUserQuestion`", just ask the user the question
-  directly in chat. Keep the rule of **one question at a time** with sensible defaults
-  offered as the first option.
-- Render the two final prompts (Stage 1 and Stage 2) inside fenced code blocks so the
-  user can copy them in one click.
+  directly in chat. Keep the rule of **one question at a time** with sensible
+  defaults offered as the first option.
+- Render the two final prompts (Stage 1 and Stage 2) inside fenced code blocks so
+  the user can copy them in one click.
 - Beat timings in Stage 2 must sum exactly to the requested DURATION. If they do
   not, ask the user to fix them before producing the Stage 2 prompt.
 - Improvise where it helps the user — these are recommendations, not strict rails.
   If context calls for a different default, propose it and explain why.
-- The archive path under `~/Obsidian/...` only applies if the user actually has that
-  vault. If not, skip the archive step or offer to save the prompts inside the repo
-  instead.
+- The archive path under `~/Obsidian/...` only applies if the user actually has
+  that vault. If not, skip the archive step or offer to save the prompts inside
+  the repo instead.
 
 The original skill content begins below this line.
 
